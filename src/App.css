@@ -1,9 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 * {
   margin: 0;
   padding: 0;
 }
+:root {
+  background-color: #90afef;
+}
 
-div {
+#container {
+  width: 334px;
+  height: 396px;
+  margin: 200px auto 100px auto;
   background-color: #282c34;
+  padding: 10px;
   color: white;
+}
+
+.container-button {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  height: 65px;
+  width: 80px;
+  font-size: 20px;
+  border: none;
+  background-color: rgb(102, 102, 102);
+  margin: 1px;
+}
+
+.container-button:hover {
+  color: #282c34;
+  border: 1px solid gray; 
+}
+
+.number-button {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  height: 65px;
+  width: 80px;
+  font-size: 20px;
+  border: none;
+  background-color: #4d4d4d;
+  margin: 1px;
+}
+
+.number-button:hover {
+  color: #282c34;
+  border: 1px solid gray; 
+}
+
+.clear-button {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  border: none; 
+}
+
+.clear-button:hover {
+  color: #282c34;
+  border: 1px solid gray; 
+}
+
+
+#display {
+  text-align: right;
+  height: 35px;
+  font-size: 29px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#clear {
+  background-color: rgb(172, 57, 57);
+  font-size: 20px;
+  height: 65px;
+  width: 163px;
+  margin-right: 1px;
 }
