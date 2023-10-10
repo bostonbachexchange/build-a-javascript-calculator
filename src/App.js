@@ -146,6 +146,8 @@ function App() {
   
   // Version 3
   function concatInput(num) {
+
+    const lastOperation = operationsArray[operationsArray.length - 1]
     if (num === "0" && input === "0") {
       // If the current input is "0" and "0" is pressed again, do nothing.
       return;
@@ -173,8 +175,11 @@ function App() {
         }
       } else {
         // If the current input is not "0" and an operator is pressed, add the input to operationsArray.
-        
-        setOperationsArray([...operationsArray, input, num]);
+        console.log('here it comes')
+        if(lastOperation === 'x' && num === '+'){operationsArray.pop()}
+        if(input === '-' && num === '+'){setOperationsArray([...operationsArray, num])}
+        // console.log(...operationsArray, input, num)
+        else {setOperationsArray([...operationsArray, input, num]);}
       }
       setInput("0");
     } else {
