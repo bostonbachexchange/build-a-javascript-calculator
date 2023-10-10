@@ -47,104 +47,10 @@ function App() {
           console.log("total", total)
           break;
       }
-      console.log("total before set", total);
     }
     setDisplay(total)
   }
 
-  // version 1
-  // function concatInput (num) {
-  //   switch(num) {
-  //     case "0":
-  //     case "1":
-  //     case "2":
-  //     case "3":
-  //     case "4":
-  //     case "5":
-  //     case "6":
-  //     case "7":
-  //     case "8":
-  //     case "9":
-  //       if (["0", "+", "-", "/", "x"].includes(input)) {
-  //         setInput(num);
-  //         // setOperationsArray(num);
-  //       }
-  //       else {
-  //         setInput(input.concat(num));
-  //         // setOperationsArray(input.concat(num));
-  //       };
-  //       break;
-      
-  //     case ".":
-  //       if (input.includes('.')) {
-  //         console.log("input includes .")
-  //       } else {setInput(input.concat(num))};
-  //       break;
-  //     case "-":
-  //       // setInput(input.concat(num));
-  //       // break;
-  //     case "+":
-  //     case "x":
-  //     case '/':
-  //       console.log("operations Array End", operationsArray[operationsArray.length - 1])
-  //       console.log("operationsArray before pop", operationsArray)
-  //       if(['-', "+", "x", '/'].includes(input)) {
-  //         operationsArray.pop()
-  //         setOperationsArray([...operationsArray, num]);
-  //       }
-  //       else {
-  //         setOperationsArray([...operationsArray, num]);
-  //       }
-  //       setInput(num)
-  //       break;
-  //   }
-  // }
-
-
-  // version 2
-  // function concatInput(num) {
-  //   if (num === "0" && input === "0") {
-  //     // If the current input is "0" and "0" is pressed again, do nothing.
-  //     return;
-  //   }
-  //   // if (num === "-") {
-  //   //   setInput('-')
-  //   //   console.log('changed input', input)
-  //   //   return
-  //   // }
-  //   if(num === '.'){
-  //   if (input.includes('.')) {
-  //         console.log("input includes .")
-  //         return
-  //       } else {setInput(input.concat(num))}; 
-  //       return
-  //     }
-  //   if (["+", "-", "/", "x"].includes(num)) {
-  //     if (input === "0") {
-  //       if (num === "-") {
-  //     setInput('-')
-  //     console.log('changed input', input)
-  //     return
-  //   }
-  //       // If the current input is "0" and an operator is pressed, update the last element in operationsArray.
-  //       if (operationsArray.length > 0) {
-  //         const updatedArray = [...operationsArray];
-  //         updatedArray[operationsArray.length - 1] = num;
-  //         setOperationsArray(updatedArray);
-  //       }
-       
-  //     } else {
-  //       // If the current input is not "0" and an operator is pressed, add the input to operationsArray.
-  //       setOperationsArray([...operationsArray, input, num]);
-  //     }
-  //     setInput("0");
-  //   } else {
-  //     // If a digit or "." is pressed, continue appending to the input.
-  //     setInput((prevInput) => prevInput === "0" ? num : prevInput + num);
-  //   }
-  // }
-  
-  // Version 3
   function concatInput(num) {
 
     const lastOperation = operationsArray[operationsArray.length - 1]
@@ -166,7 +72,6 @@ function App() {
           return;
         } else {
           // If the current input is "0" and an operator is pressed, update the last element in operationsArray.
-          
           if (operationsArray.length > 0 && !["-", "+", "/", "x"].includes(operationsArray[operationsArray.length - 1])) {
             const updatedArray = [...operationsArray];
             updatedArray[operationsArray.length - 1] = num;
@@ -175,10 +80,9 @@ function App() {
         }
       } else {
         // If the current input is not "0" and an operator is pressed, add the input to operationsArray.
-        console.log('here it comes')
+        // If another operation is pressed, replace previous operation
         if(lastOperation === 'x' && num === '+'){operationsArray.pop()}
         if(input === '-' && num === '+'){setOperationsArray([...operationsArray, num])}
-        // console.log(...operationsArray, input, num)
         else {setOperationsArray([...operationsArray, input, num]);}
       }
       setInput("0");
@@ -187,8 +91,6 @@ function App() {
       setInput((prevInput) => prevInput === "0" ? num : prevInput + num);
     }
   }
-  
-  
   return (
     <div id='container'>
       <div id='input'>{operationsArray} {display? `= ${display}` : null} </div>
